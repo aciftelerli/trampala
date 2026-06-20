@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trampala</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --deep: #2c0d66;
+      --purple: #6d22e8;
+      --orange: #ff6238;
+      --line: #e8deff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 12% 0%, #fff2d8 0, transparent 34%),
+        radial-gradient(circle at 82% 2%, #eadcff 0, transparent 36%),
+        #f7f3ff;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    main {
+      width: min(900px, 100%);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    a, .box {
+      min-height: 220px;
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 18px 55px rgba(44, 13, 102, .1);
+      color: var(--deep);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      text-decoration: none;
+    }
+
+    a {
+      color: white;
+      background: linear-gradient(135deg, var(--deep), var(--purple) 62%, var(--orange));
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    a:hover, a:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 65px rgba(109, 34, 232, .25);
+    }
+
+    .box { cursor: default; }
+
+    @media (max-width: 640px) {
+      main { grid-template-columns: 1fr; }
+      a, .box { min-height: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <main aria-label="Trampala dokümanları">
+    <a href="/strateji">Strateji</a>
+    <div class="box">Teklif</div>
+    <a href="/icerik">İçerik</a>
+    <div class="box">Sözleşme</div>
+  </main>
+</body>
+</html>

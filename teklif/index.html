@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trampala — 3 Paket Teklif Yapısı</title>
+  <style>
+    :root{
+      --purple:#5B14E8; --deep:#17002E; --violet:#8B2CFF; --orange:#FF8A00; --yellow:#FFC640;
+      --ink:#15111F; --muted:#6E6680; --soft:#F7F2FF; --line:#E7DDF7; --white:#FFFFFF;
+      --gradient:linear-gradient(135deg,#FF8A00 0%,#FFC640 32%,#8B2CFF 72%,#5B14E8 100%);
+      --gradient2:linear-gradient(135deg,#5B14E8 0%,#8B2CFF 46%,#FF8A00 100%);
+      --shadow:0 22px 70px rgba(33,0,80,.14);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color:var(--ink);
+      background:radial-gradient(circle at 10% 2%,rgba(139,44,255,.20),transparent 28%),
+                 radial-gradient(circle at 88% 10%,rgba(255,138,0,.16),transparent 26%),
+                 linear-gradient(180deg,#fff 0%,#FBF8FF 45%,#F5EDFF 100%);
+      overflow-x:hidden;
+    }
+    .bg-orb{position:fixed;width:520px;height:520px;border-radius:50%;filter:blur(8px);z-index:-1;pointer-events:none;animation:floatOrb 12s ease-in-out infinite alternate}
+    .orb-1{left:-220px;top:120px;background:radial-gradient(circle,rgba(139,44,255,.17),transparent 67%)}
+    .orb-2{right:-240px;bottom:-120px;background:radial-gradient(circle,rgba(255,138,0,.16),transparent 67%);animation-delay:1.5s}
+    @keyframes floatOrb{from{transform:translateY(0)}to{transform:translateY(42px)}}
+    .wrap{width:min(1180px, calc(100% - 40px));margin:0 auto}
+    header{padding:38px 0 22px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px;font-weight:900;letter-spacing:-.04em;font-size:30px}
+    .mark{width:46px;height:46px;border-radius:16px;background:var(--gradient);position:relative;box-shadow:0 14px 34px rgba(91,20,232,.24)}
+    .mark:before{content:"∞";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:31px;font-weight:900;transform:rotate(-12deg)}
+    .top-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(91,20,232,.13);border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:blur(14px);color:var(--deep);font-weight:800;font-size:14px;box-shadow:0 10px 32px rgba(33,0,80,.07)}
+    .top-pill b{color:var(--purple)}
+    .hero{padding:34px 0 26px;display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid rgba(255,138,0,.20);color:var(--purple);font-weight:900;box-shadow:0 10px 26px rgba(255,138,0,.10)}
+    .spark{width:22px;height:22px;border-radius:50%;background:var(--gradient);display:inline-grid;place-items:center;color:#fff;font-size:12px}
+    h1{margin:18px 0 18px;font-size:clamp(44px,7vw,84px);line-height:.92;letter-spacing:-.07em}
+    h1 .grad{background:var(--gradient2);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:clamp(18px,2vw,24px);color:#3B304D;line-height:1.35;max-width:760px;margin:0 0 24px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .btn{text-decoration:none;border-radius:18px;padding:15px 20px;font-weight:900;display:inline-flex;align-items:center;gap:10px;transition:.25s ease}
+    .btn.primary{color:#fff;background:var(--gradient2);box-shadow:0 18px 44px rgba(91,20,232,.24)}
+    .btn.secondary{color:var(--purple);background:#fff;border:1px solid rgba(91,20,232,.14)}
+    .btn:hover{transform:translateY(-3px)}
+    .hero-card{background:rgba(255,255,255,.84);backdrop-filter:blur(18px);border:1px solid rgba(91,20,232,.12);border-radius:36px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero-card:before{content:"";position:absolute;width:220px;height:220px;right:-90px;top:-90px;border-radius:50%;background:var(--gradient);opacity:.16}
+    .mini-title{font-size:15px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+    .flow{display:grid;gap:14px;position:relative;z-index:1}
+    .flow-item{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:center;padding:16px;background:#fff;border:1px solid rgba(91,20,232,.10);border-radius:24px;box-shadow:0 14px 30px rgba(33,0,80,.06)}
+    .flow-icon{width:54px;height:54px;border-radius:18px;background:var(--gradient);display:grid;place-items:center;color:#fff;font-size:24px;font-weight:900;box-shadow:0 14px 24px rgba(91,20,232,.20)}
+    .flow-item b{display:block;font-size:18px;margin-bottom:3px}
+    .flow-item span{color:var(--muted);font-size:14px;line-height:1.35}
+    section{padding:46px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}
+    h2{margin:0;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.05em}
+    .section-note{color:var(--muted);font-size:16px;max-width:420px;line-height:1.45;margin:0}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+    .package{background:#fff;border:1px solid rgba(91,20,232,.12);border-radius:34px;padding:24px;box-shadow:0 18px 52px rgba(33,0,80,.08);position:relative;overflow:hidden;transition:.28s ease;min-height:620px;display:flex;flex-direction:column}
+    .package:hover{transform:translateY(-8px);box-shadow:0 30px 72px rgba(33,0,80,.14)}
+    .package.featured{border:2px solid rgba(255,138,0,.48);box-shadow:0 28px 82px rgba(255,138,0,.14)}
+    .package.premium{background:linear-gradient(180deg,#200146 0%,#120026 100%);color:#fff;border-color:rgba(255,255,255,.12)}
+    .package:before{content:"";position:absolute;inset:auto -40px -80px auto;width:190px;height:190px;border-radius:50%;background:var(--gradient);opacity:.12}
+    .tag{align-self:flex-start;padding:8px 12px;border-radius:999px;font-weight:900;font-size:13px;color:var(--purple);background:var(--soft);border:1px solid rgba(91,20,232,.10);margin-bottom:18px}
+    .featured .tag{color:#7A3A00;background:#FFF0D6;border-color:rgba(255,138,0,.22)}
+    .premium .tag{color:#fff;background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.12)}
+    .package h3{margin:0 0 8px;font-size:29px;letter-spacing:-.04em;line-height:1.05}
+    .package .desc{color:var(--muted);line-height:1.42;font-size:15px;min-height:62px;margin:0 0 22px}
+    .premium .desc{color:rgba(255,255,255,.72)}
+    .price{margin:0 0 6px;display:flex;align-items:flex-end;gap:8px}
+    .price strong{font-size:42px;line-height:.92;letter-spacing:-.06em}
+    .price span{color:var(--muted);font-weight:800;padding-bottom:3px}
+    .premium .price span{color:rgba(255,255,255,.65)}
+    .period{color:var(--muted);font-size:14px;font-weight:800;margin-bottom:18px}
+    .premium .period{color:rgba(255,255,255,.62)}
+    .includes{padding:0;margin:0;list-style:none;display:grid;gap:11px;flex:1}
+    .includes li{display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:start;color:#33293F;line-height:1.35;font-size:15px}
+    .premium .includes li{color:rgba(255,255,255,.86)}
+    .check{width:24px;height:24px;border-radius:9px;display:grid;place-items:center;color:#fff;background:var(--gradient);font-size:13px;font-weight:900;margin-top:-1px}
+    .package-footer{margin-top:22px;padding-top:18px;border-top:1px solid rgba(91,20,232,.10);color:var(--muted);font-size:13px;line-height:1.4;font-weight:700}
+    .premium .package-footer{border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.66)}
+    .comparison{display:grid;grid-template-columns:1fr;background:#fff;border:1px solid rgba(91,20,232,.12);border-radius:34px;overflow:hidden;box-shadow:var(--shadow)}
+    .row{display:grid;grid-template-columns:1.2fr repeat(3,.8fr);border-bottom:1px solid var(--line)}
+    .row:last-child{border-bottom:0}
+    .cell{padding:18px 20px;font-size:15px;line-height:1.35;display:flex;align-items:center;min-height:64px}
+    .head .cell{background:linear-gradient(180deg,#fff,#FBF7FF);font-weight:900;color:var(--deep)}
+    .cell:not(:first-child){justify-content:center;text-align:center;border-left:1px solid var(--line);font-weight:800}
+    .yes{color:var(--purple);font-size:22px;line-height:1}
+    .limited{color:#9A6A00;background:#FFF3D9;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:900}
+    .no{color:#B9AEC9;font-size:20px}
+    .notes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .note-card{background:#fff;border:1px solid rgba(91,20,232,.12);border-radius:30px;padding:24px;box-shadow:0 16px 48px rgba(33,0,80,.07)}
+    .note-card h3{margin:0 0 12px;font-size:26px;letter-spacing:-.04em}
+    .note-card p{margin:0;color:var(--muted);line-height:1.48}
+    .chips{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:var(--soft);color:var(--purple);border:1px solid rgba(91,20,232,.12);border-radius:999px;padding:9px 12px;font-weight:900;font-size:13px}
+    footer{padding:42px 0 58px;text-align:center;color:var(--muted);font-size:14px}
+    @media (max-width:980px){
+      header{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:1fr}.pricing{grid-template-columns:1fr}.package{min-height:auto}.section-head{align-items:flex-start;flex-direction:column}.notes{grid-template-columns:1fr}.row{grid-template-columns:1.1fr repeat(3,.7fr)}.cell{padding:14px 12px;font-size:13px}
+    }
+    @media (max-width:620px){
+      .wrap{width:min(100% - 24px, 1180px)}header{padding-top:24px}.brand{font-size:24px}.mark{width:40px;height:40px}.top-pill{font-size:12px}.hero{padding-top:16px}h1{font-size:46px}.lead{font-size:18px}.hero-card{border-radius:26px;padding:18px}.flow-item{grid-template-columns:44px 1fr;padding:13px;border-radius:18px}.flow-icon{width:44px;height:44px;border-radius:15px}section{padding:32px 0}.comparison{overflow:auto;border-radius:24px}.row{min-width:720px}.package h3{font-size:26px}.price strong{font-size:36px}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div><div class="bg-orb orb-2"></div>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div>Trampala Growth Proposal</div></div>
+      <div class="top-pill">3 yaklaşım · <b>strateji → uygulama → growth office</b></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Trampala için <span class="grad">3 seviyeli</span> büyüme modeli</h1>
+          <p class="lead">Amaç; fikri yalnızca anlatmak değil, doğru pazara konumlamak, içerik ve kanal sistemini kurmak, ardından B2B growth ve satış operasyonuna bağlamak.</p>
+          <div class="hero-actions"><a class="btn primary" href="#paketler">Paketleri gör →</a><a class="btn secondary" href="#karsilastirma">Karşılaştırma tablosu</a></div>
+        </div>
+        <aside class="hero-card">
+          <div class="mini-title">Yaklaşım mantığı</div>
+          <div class="flow">
+            <div class="flow-item"><div class="flow-icon">1</div><div><b>Yönü netleştir</b><span>Strateji, konumlandırma, 90 günlük roadmap.</span></div></div>
+            <div class="flow-item"><div class="flow-icon">2</div><div><b>Pazara taşı</b><span>Art direction, medya planlama, sosyal medya yönetimi.</span></div></div>
+            <div class="flow-item"><div class="flow-icon">3</div><div><b>Büyüme sistemini kur</b><span>ABM, B2B satış, key account, product-growth yönetimi.</span></div></div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="paketler">
+        <div class="section-head"><h2>Paketler</h2><p class="section-note">Paketler kapsam ve sorumluluk seviyesine göre ayrılır. Her paket bir üst seviyeye temel oluşturur.</p></div>
+        <div class="pricing">
+          <article class="package">
+            <div class="tag">Paket 1 · Strategy Sprint</div>
+            <h3>Stratejinin detaylandırılması</h3>
+            <p class="desc">Uygulama yok. 1 ay süren netleştirme, önceliklendirme ve 90 günlük yol haritası sprint’i.</p>
+            <div class="price"><strong>60.000 TL</strong><span>+ KDV</span></div>
+            <div class="period">Tek seferlik · 1 ay</div>
+            <ul class="includes">
+              <li><span class="check">✓</span><span>Stratejik konumlandırma ve ana değer önerisi</span></li>
+              <li><span class="check">✓</span><span>B2B barter odaklı pazar ve kategori önceliği</span></li>
+              <li><span class="check">✓</span><span>STP, hedef kitle ve sektör segmentasyonu</span></li>
+              <li><span class="check">✓</span><span>90 günlük roadmap ve aksiyon öncelikleri</span></li>
+              <li><span class="check">✓</span><span>İçerik kolonları ve kanal stratejisi</span></li>
+              <li><span class="check">✓</span><span>Ürün / pazarlama / satış için yön önerileri</span></li>
+              <li><span class="check">✓</span><span>Final strateji sunumu</span></li>
+            </ul>
+            <div class="package-footer">Ekibin uygulama yapacağı ama stratejik yönün netleşmesi gereken başlangıç fazı.</div>
+          </article>
+
+          <article class="package featured">
+            <div class="tag">Paket 2 · Growth Execution</div>
+            <h3>Strateji + uygulama</h3>
+            <p class="desc">Paket 1’deki strateji sprint’i dahil. İçerik, art direction ve sosyal medya operasyonu yürütülür.</p>
+            <div class="price"><strong>110.000 TL</strong><span>+ KDV</span></div>
+            <div class="period">Aylık retainer · Paket 1 ücretsiz / dahil</div>
+            <ul class="includes">
+              <li><span class="check">✓</span><span>Paket 1’deki tüm strateji çıktıları</span></li>
+              <li><span class="check">✓</span><span>Art direction ve görsel iletişim sistemi</span></li>
+              <li><span class="check">✓</span><span>Aylık medya ve yayın planı</span></li>
+              <li><span class="check">✓</span><span>Instagram / LinkedIn sosyal medya yönetimi</span></li>
+              <li><span class="check">✓</span><span>İçerik fikirleri, post metinleri ve brief akışı</span></li>
+              <li><span class="check">✓</span><span>Reels, carousel, story ve kampanya konseptleri</span></li>
+              <li><span class="check">✓</span><span>Aylık performans ve öğrenim raporu</span></li>
+            </ul>
+            <div class="package-footer">Trampala’nın görünürlük, güven ve lead odaklı içerik sistemini hızlıca yayına almak.</div>
+          </article>
+
+          <article class="package premium">
+            <div class="tag">Paket 3 · Full Growth Office</div>
+            <h3>Growth, ABM ve proje yönetimi</h3>
+            <p class="desc">Paket 1 + Paket 2’ye ek olarak B2B satış, key account, ABM ve product-growth sistemi kurulur.</p>
+            <div class="price"><strong>180.000 TL</strong><span>+ KDV</span></div>
+            <div class="period">Aylık retainer</div>
+            <ul class="includes">
+              <li><span class="check">✓</span><span>Paket 1 ve Paket 2’deki tüm kapsam</span></li>
+              <li><span class="check">✓</span><span>Growth office ve proje yönetimi akışı</span></li>
+              <li><span class="check">✓</span><span>Product development stratejileri ve önceliklendirme</span></li>
+              <li><span class="check">✓</span><span>ABM: hedef hesap listesi, mesaj ve takip sistemi</span></li>
+              <li><span class="check">✓</span><span>Dedike B2B satış temsilcisi yönlendirmesi</span></li>
+              <li><span class="check">✓</span><span>Key account yönetimi ve pipeline disiplini</span></li>
+              <li><span class="check">✓</span><span>Growth & business development fırsatları</span></li>
+            </ul>
+            <div class="package-footer">Trampala’yı içerik markasından B2B barter ağına dönüştürecek kapsamlı büyüme fazı.</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="karsilastirma">
+        <div class="section-head"><h2>Karşılaştırma</h2><p class="section-note">Net fark: Paket 1 yönü kurar, Paket 2 uygular, Paket 3 büyüme sistemini yönetir.</p></div>
+        <div class="comparison">
+          <div class="row head"><div class="cell">Kapsam</div><div class="cell">Paket 1</div><div class="cell">Paket 2</div><div class="cell">Paket 3</div></div>
+          <div class="row"><div class="cell">Strateji, konumlandırma, 90 günlük roadmap</div><div class="cell"><span class="yes">✓</span></div><div class="cell"><span class="yes">✓</span></div><div class="cell"><span class="yes">✓</span></div></div>
+          <div class="row"><div class="cell">İçerik ve kanal stratejisi</div><div class="cell"><span class="yes">✓</span></div><div class="cell"><span class="yes">✓</span></div><div class="cell"><span class="yes">✓</span></div></div>
+          <div class="row"><div class="cell">Art direction ve yaratıcı kampanya konseptleri</div><div class="cell"><span class="limited">stratejik</span></div><div class="cell"><span class="yes">✓</span></div><div class="cell"><span class="yes">✓</span></div></div>
+          <div class="row"><div class="cell">Sosyal medya yönetimi ve medya planlama</div><div class="cell"><span class="no">—</span></div><div class="cell"><span class="yes">✓</span></div><div class="cell"><span class="yes">✓</span></div></div>
+          <div class="row"><div class="cell">Product development stratejisi</div><div class="cell"><span class="limited">yön önerisi</span></div><div class="cell"><span class="limited">sınırlı</span></div><div class="cell"><span class="yes">✓</span></div></div>
+          <div class="row"><div class="cell">ABM, hedef hesap, B2B satış ve key account</div><div class="cell"><span class="no">—</span></div><div class="cell"><span class="no">—</span></div><div class="cell"><span class="yes">✓</span></div></div>
+          <div class="row"><div class="cell">Growth & business development yönetimi</div><div class="cell"><span class="no">—</span></div><div class="cell"><span class="limited">içerik odaklı</span></div><div class="cell"><span class="yes">✓</span></div></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="notes">
+          <div class="note-card">
+            <h3>Dahil olmayan kalemler</h3>
+            <p>Medya satın alma bütçesi, prodüksiyon giderleri, yazılım geliştirme, CRM lisansları, satış temsilcisi maaşı, hukuki / mali danışmanlık ve üçüncü parti hizmet bedelleri ayrıca bütçelendirilir.</p>
+            <div class="chips"><span class="chip">Medya bütçesi hariç</span><span class="chip">Prodüksiyon hariç</span><span class="chip">Yazılım geliştirme hariç</span></div>
+          </div>
+          <div class="note-card">
+            <h3>Önerilen başlangıç</h3>
+            <p>En sağlıklı yapı; önce Paket 1 ile yönü netleştirmek, ardından Paket 2 ile pazara çıkmak. Kurucular hızlı ve agresif B2B büyüme istiyorsa Paket 3 doğrudan growth office modeli olarak konumlanır.</p>
+            <div class="chips"><span class="chip">1. Yönü kur</span><span class="chip">2. Pazara taşı</span><span class="chip">3. Büyümeyi yönet</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>Trampala için hazırlanan paket yapısı · Strateji, uygulama ve B2B growth modeli</footer>
+  </div>
+</body>
+</html>

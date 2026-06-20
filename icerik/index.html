@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16033b">
+  <title>Trampala İçerik</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --deep: #16033b;
+      --purple: #6d22e8;
+      --violet: #a72cff;
+      --orange: #ff8a1f;
+      --paper: #fff;
+      --muted: #c8bde4;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 11% 17%, rgba(151, 37, 255, .42), transparent 27%),
+        radial-gradient(circle at 78% 82%, rgba(255, 111, 26, .18), transparent 28%),
+        linear-gradient(145deg, #0d0228, var(--deep) 48%, #25045b);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .24;
+      background-image: radial-gradient(rgba(255,255,255,.7) .7px, transparent .7px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      padding: 24px clamp(18px, 3vw, 52px) 32px;
+    }
+
+    header {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .back {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      color: #ffb15e;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .counter {
+      min-width: 70px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    main {
+      width: min(1440px, 100%);
+      min-height: 760px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(650px, 1.55fr) minmax(310px, .75fr);
+      align-items: center;
+      gap: clamp(36px, 5vw, 90px);
+    }
+
+    .showcase {
+      position: relative;
+      min-width: 0;
+      height: 740px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .halo {
+      position: absolute;
+      width: 610px;
+      height: 610px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(151, 37, 255, .18), transparent 66%);
+      box-shadow: inset 0 0 100px rgba(122, 32, 232, .12);
+    }
+
+    .halo::before, .halo::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,.1);
+    }
+
+    .halo::before { inset: 54px; }
+    .halo::after { inset: 115px; }
+
+    .orbit {
+      position: absolute;
+      inset: 50%;
+      z-index: 5;
+    }
+
+    .orbit-item {
+      --x: 0px;
+      --y: 0px;
+      --scale: 1;
+      position: absolute;
+      width: 96px;
+      height: 96px;
+      margin: -48px;
+      padding: 5px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      box-shadow: 0 18px 45px rgba(5, 0, 27, .55);
+      cursor: pointer;
+      transform: translate(var(--x), var(--y)) scale(var(--scale));
+      transition: transform .72s cubic-bezier(.2,.8,.2,1), opacity .4s, border-color .35s, box-shadow .35s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .orbit-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .orbit-item:hover, .orbit-item:focus-visible {
+      border-color: rgba(255, 177, 94, .9);
+      outline: none;
+      box-shadow: 0 18px 48px rgba(255, 126, 29, .35);
+    }
+
+    .orbit-item[aria-current="true"] {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 4px rgba(255,138,31,.17), 0 20px 55px rgba(255,126,29,.4);
+    }
+
+    .phone {
+      position: relative;
+      z-index: 10;
+      width: 330px;
+      padding: 10px;
+      border: 2px solid #514a68;
+      border-radius: 55px;
+      background: linear-gradient(145deg, #383342, #0a0910 42%, #292532);
+      box-shadow:
+        0 40px 85px rgba(3, 0, 18, .68),
+        0 0 0 1px rgba(255,255,255,.12) inset,
+        0 0 70px rgba(129, 35, 255, .25);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      width: 104px;
+      height: 25px;
+      top: 17px;
+      left: 50%;
+      border-radius: 999px;
+      background: #08070b;
+      transform: translateX(-50%);
+      box-shadow: 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 82px;
+      top: 118px;
+      right: -5px;
+      border-radius: 0 5px 5px 0;
+      background: #696274;
+    }
+
+    .screen {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1122 / 1402;
+      border-radius: 44px;
+      background: #1b1233;
+    }
+
+    .screen img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity .24s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .screen img.changing { opacity: .16; transform: scale(.965); }
+
+    .phone-controls {
+      position: absolute;
+      z-index: 15;
+      left: 50%;
+      bottom: 10px;
+      display: flex;
+      gap: 350px;
+      transform: translateX(-50%);
+    }
+
+    .arrow {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      color: white;
+      background: rgba(35, 8, 78, .84);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.32);
+      cursor: pointer;
+      font-size: 24px;
+      transition: transform .2s, background .2s;
+    }
+
+    .arrow:hover, .arrow:focus-visible {
+      background: var(--purple);
+      outline: none;
+      transform: scale(1.08);
+    }
+
+    .caption-panel {
+      position: relative;
+      padding: clamp(28px, 4vw, 52px);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 36px;
+      background: linear-gradient(145deg, rgba(255,255,255,.115), rgba(255,255,255,.045));
+      box-shadow: 0 28px 90px rgba(5, 0, 27, .36);
+      backdrop-filter: blur(22px);
+    }
+
+    .caption-panel::before {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 6px;
+      top: 0;
+      left: 46px;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(90deg, var(--orange), var(--violet));
+    }
+
+    .post-type {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffb15e;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .post-type::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 18px var(--orange);
+    }
+
+    h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(36px, 4.2vw, 66px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .caption {
+      min-height: 250px;
+      margin: 0;
+      color: #eee9f8;
+      font-size: clamp(16px, 1.25vw, 20px);
+      line-height: 1.62;
+      white-space: pre-line;
+    }
+
+    .hashtags {
+      margin: 24px 0 0;
+      color: #b995ff;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .hint {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+
+    @media (max-width: 1120px) {
+      main { grid-template-columns: minmax(550px, 1.2fr) minmax(300px, .8fr); gap: 24px; }
+      .showcase { transform: scale(.9); transform-origin: center; }
+      .caption-panel { margin-left: -28px; }
+    }
+
+    @media (max-width: 860px) {
+      .shell { padding-inline: 14px; }
+      main { min-height: auto; grid-template-columns: 1fr; gap: 12px; }
+      .showcase { height: 680px; transform: none; }
+      .halo { width: 500px; height: 500px; }
+      .phone { width: 278px; border-radius: 48px; }
+      .screen { border-radius: 38px; }
+      .phone-controls { gap: 288px; bottom: 22px; }
+      .caption-panel { margin: 0; }
+      .caption { min-height: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { padding-top: 18px; }
+      header .eyebrow { display: none; }
+      .showcase { height: 610px; }
+      .halo { width: 370px; height: 370px; }
+      .phone { width: 230px; padding: 8px; border-radius: 42px; }
+      .phone::before { width: 76px; height: 19px; top: 14px; }
+      .screen { border-radius: 34px; }
+      .orbit-item { width: 72px; height: 72px; margin: -36px; padding: 4px; }
+      .phone-controls { gap: 232px; bottom: 25px; }
+      .arrow { width: 42px; height: 42px; }
+      .caption-panel { padding: 30px 24px; border-radius: 28px; }
+      h1 { margin-top: 16px; }
+      .hint { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="back" href="/">← Trampala</a>
+      <span class="eyebrow">Instagram içerik vitrini</span>
+      <span class="counter" id="counter">01 / 08</span>
+    </header>
+
+    <main>
+      <section class="showcase" aria-label="Instagram gönderileri">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="orbit" id="orbit"></div>
+
+        <div class="phone">
+          <div class="screen">
+            <img id="phoneImage" src="/icerik/assets/hizmet-takas.png" alt="Hizmet de takas olur gönderisi">
+          </div>
+        </div>
+
+        <div class="phone-controls">
+          <button class="arrow" id="prev" type="button" aria-label="Önceki gönderi">←</button>
+          <button class="arrow" id="next" type="button" aria-label="Sonraki gönderi">→</button>
+        </div>
+      </section>
+
+      <aside class="caption-panel" aria-live="polite">
+        <div class="post-type">Gönderi caption'ı</div>
+        <h1 id="captionTitle">Hizmet de takas olur</h1>
+        <p class="caption" id="captionText"></p>
+        <p class="hashtags" id="hashtags"></p>
+        <div class="hint">Görselleri, ok tuşlarını veya klavyedeki sağ-sol tuşlarını kullan.</div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const posts = [
+      {
+        image: "hizmet-takas.png",
+        alt: "Hizmet de takas olur gönderisi",
+        title: "Hizmet de takas olur",
+        caption: "Takas sadece ürünlerle sınırlı değil. Ajans hizmetinden eğitime, danışmanlıktan profesyonel desteğe kadar sunduğun hizmeti başka bir ihtiyacınla eşleştirebilirsin.\n\nSen ne sunarsın, karşılığında neye ihtiyacın var? Senaryonu yaz, birlikte kurgulayalım.",
+        hashtags: "#Trampala #HizmetTakası #Barter #TakasEkonomisi"
+      },
+      {
+        image: "stok-cevir.png",
+        alt: "Stoktaki elektroniği çevir gönderisi",
+        title: "Stokunu bekletme, değerlendir",
+        caption: "Rafta bekleyen elektronik ürün maliyettir. Onu işinde kullanacağın başka bir ürüne, hizmete veya yeni bir fırsata dönüştür.\n\nStok sende beklemesin; değer, doğru eşleşmeyle yeniden harekete geçsin.",
+        hashtags: "#StokYönetimi #Elektronik #Barter #Trampala"
+      },
+      {
+        image: "arac-emlak.png",
+        alt: "Araç ve emlak takası gönderisi",
+        title: "Araç + emlak: akıllı eşleşme",
+        caption: "Bir aracın var, hedefin gayrimenkul mü? Ya da portföyündeki emlak için araçlı bir teklif mi arıyorsun?\n\nYüksek değerli varlıkları doğru ihtiyaçlarla buluşturan takas senaryoları Trampala’da mümkün.",
+        hashtags: "#AraçTakası #EmlakTakası #AkıllıEşleşme #Trampala"
+      },
+      {
+        image: "takas-fikri.png",
+        alt: "Sektöre özel takas fikri gönderisi",
+        title: "Sektörüne özel takas fikri",
+        caption: "Her sektörün elindeki değer ve ihtiyacı farklı. Ürün, hizmet, ekipman veya gayrimenkul...\n\nSektörünü ve elindeki değeri bize yaz. Sana özel, uygulanabilir bir takas senaryosunu birlikte oluşturalım.",
+        hashtags: "#TakasFikri #B2BBarter #YeniNesilTicaret #Trampala"
+      },
+      {
+        image: "barter.png",
+        alt: "Barter checklist gönderisi",
+        title: "Barter checklist'i",
+        caption: "İyi bir barter anlaşması beş net adımla güçlenir: ihtiyaç, değer, şart, evrak ve teslim.\n\nHer madde baştan konuşulduğunda takas daha güvenli, daha hızlı ve iki taraf için de daha verimli ilerler.",
+        hashtags: "#BarterChecklist #GüvenliTakas #Ticaret #Trampala"
+      },
+      {
+        image: "takas-fikirleri.png",
+        alt: "Yaratıcı takas fikirleri gönderisi",
+        title: "Ne neyle takas edilir?",
+        caption: "Araçla ev, ürünle reklam, bilgisayarla ofis mobilyası, eğitimle konaklama... Değer sadece aynı kategoride eşleşmez.\n\nElindekini ve ihtiyacını yaz; yaratıcı eşleşme ihtimallerini birlikte keşfedelim.",
+        hashtags: "#TakasFikirleri #YaratıcıTicaret #Barter #Trampala"
+      },
+      {
+        image: "3-adimda-barter.png",
+        alt: "Üç adımda barter gönderisi",
+        title: "3 adımda barter",
+        caption: "1. İhtiyacını tanımla.\n2. Doğru eşleşmeyi bul.\n3. Teklifini netleştir.\n\nBarter karmaşık olmak zorunda değil. Doğru ihtiyaç ve doğru değer bir araya geldiğinde ticaret kolaylaşır.",
+        hashtags: "#3AdımdaBarter #NasılÇalışır #Takas #Trampala"
+      },
+      {
+        image: "insaatta-barter.png",
+        alt: "İnşaatta barter gönderisi",
+        title: "İnşaatta barter",
+        caption: "İnşaat sektöründe nakit baskısını azaltmanın yollarından biri doğru barter modelidir. Malzeme, hizmet, ekipman veya gayrimenkul değeri karşılıklı ihtiyaca dönüşebilir.\n\nProjene uygun modeli görmek için elindeki değeri ve ihtiyacını paylaş.",
+        hashtags: "#İnşaattaBarter #NakitAkışı #Gayrimenkul #Trampala"
+      }
+    ];
+
+    const orbit = document.querySelector("#orbit");
+    const phoneImage = document.querySelector("#phoneImage");
+    const captionTitle = document.querySelector("#captionTitle");
+    const captionText = document.querySelector("#captionText");
+    const hashtags = document.querySelector("#hashtags");
+    const counter = document.querySelector("#counter");
+    const media = window.matchMedia("(max-width: 560px)");
+    let current = 0;
+    let touchStartX = 0;
+
+    posts.forEach((post, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "orbit-item";
+      button.dataset.index = index;
+      button.setAttribute("aria-label", post.title);
+      button.innerHTML = `<img src="/icerik/assets/${post.image}" alt="" loading="eager">`;
+      button.addEventListener("click", () => selectPost(index));
+      orbit.append(button);
+    });
+
+    function renderOrbit() {
+      const radiusX = media.matches ? 154 : 300;
+      const radiusY = media.matches ? 244 : 300;
+      const buttons = [...orbit.children];
+
+      buttons.forEach((button, index) => {
+        let offset = index - current;
+        if (offset > posts.length / 2) offset -= posts.length;
+        if (offset < -posts.length / 2) offset += posts.length;
+        const angle = (-90 + offset * (360 / posts.length)) * Math.PI / 180;
+        const x = Math.cos(angle) * radiusX;
+        const y = Math.sin(angle) * radiusY;
+        const depth = (Math.sin(angle) + 1) / 2;
+        const scale = .78 + depth * .25;
+        button.style.setProperty("--x", `${x}px`);
+        button.style.setProperty("--y", `${y}px`);
+        button.style.setProperty("--scale", scale.toFixed(3));
+        button.style.zIndex = String(Math.round(depth * 8));
+        button.style.opacity = String(.62 + depth * .38);
+        button.setAttribute("aria-current", index === current ? "true" : "false");
+      });
+    }
+
+    function selectPost(index) {
+      current = (index + posts.length) % posts.length;
+      const post = posts[current];
+      phoneImage.classList.add("changing");
+
+      window.setTimeout(() => {
+        phoneImage.src = `/icerik/assets/${post.image}`;
+        phoneImage.alt = post.alt;
+        phoneImage.classList.remove("changing");
+      }, 150);
+
+      captionTitle.textContent = post.title;
+      captionText.textContent = post.caption;
+      hashtags.textContent = post.hashtags;
+      counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(posts.length).padStart(2, "0")}`;
+      renderOrbit();
+    }
+
+    document.querySelector("#prev").addEventListener("click", () => selectPost(current - 1));
+    document.querySelector("#next").addEventListener("click", () => selectPost(current + 1));
+    document.addEventListener("keydown", event => {
+      if (event.key === "ArrowLeft") selectPost(current - 1);
+      if (event.key === "ArrowRight") selectPost(current + 1);
+    });
+    document.querySelector(".showcase").addEventListener("touchstart", event => {
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+    document.querySelector(".showcase").addEventListener("touchend", event => {
+      const distance = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(distance) > 45) selectPost(current + (distance < 0 ? 1 : -1));
+    }, { passive: true });
+    media.addEventListener("change", renderOrbit);
+
+    selectPost(0);
+  </script>
+</body>
+</html>
